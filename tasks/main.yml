@@ -62,3 +62,8 @@
     group: root
     mode: 0644
   tags: [configuration, locales, locales-default]
+  register: locales_default_set_locale
+
+- name: update locales
+  command: dpkg-reconfigure --frontend noninteractive locales
+  when: locales_default_set_locale.changed
